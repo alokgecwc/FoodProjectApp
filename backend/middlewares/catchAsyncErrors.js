@@ -21,5 +21,6 @@
 // error handler automatically, reducing repetitive `try...catch` code.
 
 
-module.exports = (func) => (req, res, next) =>
+module.exports = (func) => (req, res, next) => {
   Promise.resolve(func(req, res, next)).catch(next);
+};

@@ -85,7 +85,7 @@ class APIFeatures {
     // console.log(queryCopy);
 
     this.query = this.query.find(JSON.parse(queryStr));
-
+let sortQuery = {};
     // Check if sortBy is specified in the query parameters
     if (this.queryStr.sortBy) {
       const sortBy = this.queryStr.sortBy.toLowerCase();

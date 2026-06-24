@@ -8,7 +8,7 @@
 //  What does it do?:
 // Generates a JWT token
 
-// const token = user.getJWTToken();
+// const token = user.getJWtToken();
 
 // Stores the token in an HTTP-only cookie
 
@@ -57,14 +57,12 @@ const jwt = require("jsonwebtoken");
 
 const sendToken = (user, statusCode, res) => {
 
-  const token = user.getJWTToken();
-
-  const cookieOptions = {
-    expires: new Date(
-      Date.now() + process.env.JWT_EXPIRES_TIME * 24 * 60 * 60 * 1000
-    ),
-    httpOnly: true,
-  };
+  const token = user.getJwtToken();
+const cookieOptions = {
+  expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
+  httpOnly: true,
+};
+  
 
   res.cookie("jwt", token, cookieOptions);
 
