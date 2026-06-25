@@ -84,3 +84,28 @@ exports.logout = catchAsyncErrors(async (req, res, next) => {
     });
 }                               
 );
+
+const jwt = require("jsonwebtoken");
+
+exports.protect = catchAsyncErrors(async (req, res, next) => {
+    let token;
+
+    if (
+        req.headers.authorization &&
+        req.headers.authorization.startsWith("Bearer")
+    ) {
+        token = req.headers.authorization.split(" ")[1];
+    } else if (req.cookies.token) {
+        token = req.cookies.token;
+    }
+
+    if (!token) {
+        return next(new ErrorHandler("Please login to access this resource", 401));
+    }
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    req.user = await User.findById(decoded.id);
+
+    next();
+});
