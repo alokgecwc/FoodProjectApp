@@ -9,7 +9,7 @@ const cors = require("cors");
 const errorMiddleware = require("./middlewares/errors");
 
 // Routes
-const foodRouter = require("./routes/foodItem");
+const foodRouter = require("./routes/foodItem.js");
 const restaurant = require("./routes/restaurant");
 const menuRouter = require("./routes/menu");
 const order = require("./routes/order");
